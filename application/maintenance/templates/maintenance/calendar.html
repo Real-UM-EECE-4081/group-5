@@ -1,0 +1,11 @@
+<h1>Scheduled Maintenance</h1>
+<div>
+    {% for event in events %}
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.description }}</p>
+        <p>{{ event.start_time }} - {{ event.end_time }}</p>
+        <a href="{% url 'maintenance_updates' event.id %}">View Updates</a>
+    {% empty %}
+        <p>No scheduled maintenance events.</p>
+    {% endfor %}
+</div>
