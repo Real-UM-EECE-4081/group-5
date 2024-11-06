@@ -1,3 +1,52 @@
+<!-- maintenance/calendar_with_updates.html -->
+<h1>Scheduled Maintenance and Updates</h1>
+
+<h2>Currently Active Maintenance Events</h2>
+{% if active_events %}
+    {% for event in active_events %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+            <h3>{{ event.title }}</h3>
+            <p><strong>Description:</strong> {{ event.description }}</p>
+            <p><strong>Scheduled Time:</strong> {{ event.start_time }} - {{ event.end_time }}</p>
+
+            <h4>Latest Update:</h4>
+            {% if event.latest_update %}
+                <p>{{ event.latest_update.update_text }}</p>
+            {% else %}
+                <p>No updates available</p>
+            {% endif %}
+
+            <a href="{% url 'maintenance_updates' event.id %}">View All Updates</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No active maintenance events at the moment.</p>
+{% endif %}
+
+<h2>Upcoming Maintenance Events</h2>
+{% if upcoming_events %}
+    {% for event in upcoming_events %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+            <h3>{{ event.title }}</h3>
+            <p><strong>Description:</strong> {{ event.description }}</p>
+            <p><strong>Scheduled Time:</strong> {{ event.start_time }} - {{ event.end_time }}</p>
+
+            <h4>Latest Update:</h4>
+            {% if event.latest_update %}
+                <p>{{ event.latest_update.update_text }}</p>
+            {% else %}
+                <p>No updates available</p>
+            {% endif %}
+
+            <a href="{% url 'maintenance_updates' event.id %}">View All Updates</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No upcoming maintenance events.</p>
+{% endif %}
+
+
+<!--
 <h1>Scheduled Maintenance</h1>
 <div>
     {% for event in events %}
@@ -9,3 +58,4 @@
         <p>No scheduled maintenance events.</p>
     {% endfor %}
 </div>
+-->

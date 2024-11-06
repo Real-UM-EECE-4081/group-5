@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class MaintenanceEvent(models.Model):
@@ -14,7 +15,7 @@ class MaintenanceEvent(models.Model):
 class MaintenanceUpdate(models.Model):
     event = models.ForeignKey(MaintenanceEvent, on_delete=models.CASCADE, related_name="updates")
     update_text = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
