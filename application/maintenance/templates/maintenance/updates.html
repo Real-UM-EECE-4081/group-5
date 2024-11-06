@@ -1,0 +1,14 @@
+<h1>Maintenance Updates for {{ event.title }}</h1>
+<p>{{ event.description }}</p>
+<p>{{ event.start_time }} - {{ event.end_time }}</p>
+
+<h2>Status Updates</h2>
+<ul>
+    {% for update in updates %}
+        <li>
+            <strong>{{ update.timestamp }}:</strong> {{ update.update_text }}
+        </li>
+    {% empty %}
+        <p>No updates available.</p>
+    {% endfor %}
+</ul>
